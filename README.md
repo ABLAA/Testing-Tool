@@ -6,15 +6,15 @@ The purpose from this tool is to free testers from manually writing test files f
 To start the app :
 
 
-cd oidc-testing-tool-front
+1) - cd oidc-testing-tool-front
 
-npm i
+   - npm i
 
-npm start
+   - npm start
 
 
-cd server
+2) - cd server
 
-npm i 
+   - npm i 
 
-node index.js || nodemon index.js
+   - node index.js || nodemon index.js
