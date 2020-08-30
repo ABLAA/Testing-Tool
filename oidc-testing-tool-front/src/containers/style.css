@@ -1,0 +1,148 @@
+  .button {
+    color: white;
+    text-transform: uppercase;
+    text-decoration: none;
+    background: black;
+    font-size: 20px;
+    border: 2px solid black;
+    display: inline-block;
+    border-radius:0;
+    height: 34px;
+    transition: all 0.4s ease 0s;
+    
+  }
+  .button:hover {
+    color: white;
+    background: #ff6600;
+    border-color: #ff6600;
+    transition: all 0.1s ease 0s;
+    border: 1px solid #ff6600;
+    border-radius:0;
+  }
+  .button:active {
+    color: white;
+    background: #ff6600;
+    transition: all 0.1s ease 0s;
+    border-radius:0;
+  }
+  .input:hover {
+    transition: all 0.1s ease 0s;
+    border-radius:0;
+
+    
+  }
+  .input:focus {
+    border: 2px solid black;
+    border-radius:0;
+  
+  }
+  .input{
+    border: 2px solid rgb(158, 158, 158);
+    border-radius: 0;
+    height: 35px;
+    width: 250px;
+    padding:10px;
+    margin-bottom: 10px;
+
+  }
+
+  .select {
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+    -moz-appearance: none;
+    background-repeat: no-repeat;
+    background-position-x: 100%;
+    background-position-y: 0px;
+    border: 2px solid rgb(158, 158, 158);
+    font-family: Arial;
+    background-color:white ;
+    border-radius:2px;
+    height: 30;
+    width: 55%;
+    padding:0px;
+    font-size: 0.9em;
+   
+  }  
+  
+ /* The container */
+.container {
+  margin-right: 35px;
+  cursor: pointer;
+  font-size: 16px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  color : black ;
+} 
+
+/* Hide the browser's default radio button */
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Create a custom radio button */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 22px;
+  width: 22px;
+  background-color: white;
+  border : 2px solid rgb(158, 158, 158);
+  border-radius: 50%;
+  margin-top: 2px;
+}
+
+/* On mouse-over, add a orange background color */
+.container:hover input ~ .checkmark {
+  background-color: white;
+}
+
+/* When the radio button is checked, add a black background */
+.container input:checked ~ .checkmark {
+  background-color: #ff6600;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.container .checkmark:after {
+ 	top: 6px;
+	left: 6px;
+	width: 6px;
+	height: 6px;
+	border-radius: 50%;
+	background: white;
+}
+
+/* To change NavSide
+/*width 
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+ 
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+} */

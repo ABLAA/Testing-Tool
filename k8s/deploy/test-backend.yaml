@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test-backend
+  namespace: test
+  labels:
+     app: test-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+       app: test-backend
+
+  template:
+    metadata:
+      labels:
+         app: test-backend
+    spec:
+      containers:
+      - name: test-backend
+        image: registry.forge.orange-labs.fr/fwbn0182/oidc-testing-tool:backend
+        imagePullPolicy: Always
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "50m"
+          limits:
+            memory: "512Mi"
+            cpu: "250m"
+        ports:
+        - containerPort: 8080
+          
+      # Image Pull From GitLab Registry Secret    
+      imagePullSecrets:
+        - name: regcred
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: test-backend-svc
+  namespace: test
+spec:
+  type: LoadBalancer
+  selector:
+    app: test-backend
+  ports:
+  - name: http
+    nodePort: 30808
+    port: 8090
+    protocol: TCP
+    targetPort: 8080

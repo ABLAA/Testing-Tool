@@ -1,0 +1,43 @@
+stages:
+  - build
+  - deploy🚀
+  - clean
+
+packaging:
+  stage: build
+  tags:
+    - docker
+  script:
+
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.forge.orange-labs.fr
+    - sudo docker build --rm -f docker/backend/Dockerfile -t registry.forge.orange-labs.fr/fwbn0182/oidc-testing-tool:backend .
+    - docker push  registry.forge.orange-labs.fr/fwbn0182/oidc-testing-tool:backend
+    - sudo docker build --rm -f docker/front/Dockerfile -t registry.forge.orange-labs.fr/fwbn0182/oidc-testing-tool:front .
+    - docker push  registry.forge.orange-labs.fr/fwbn0182/oidc-testing-tool:front
+
+after_script:
+  - docker system prune -af
+
+deploying🚀:
+  stage: deploy🚀
+  before_script:
+    - echo "${KUBECONFIG}" > kubeconfig
+    - export KUBECONFIG=kubeconfig
+  script:
+    #Rolling update
+    #- kubectl set image deploy test-backend -n test test-backend=registry.forge.orange-labs.fr/fwbn0182/oidc-testing-tool:backend
+    #- kubectl set image deploy test-ui -n test test-ui=registry.forge.orange-labs.fr/fwbn0182/oidc-testing-tool:front
+
+    - kubectl apply -f k8s/deploy/test-backend.yaml
+    - kubectl apply -f k8s/deploy/test-ui.yaml
+    - kubectl patch deployment test-backend -n test -p "{\"spec\":{\"template\":{\"metadata\":{\"labels\":{\"date\":\"$(date +%s)\"}}}}}"
+    - kubectl patch deployment test-ui  -n test -p "{\"spec\":{\"template\":{\"metadata\":{\"labels\":{\"date\":\"$(date +%s)\"}}}}}"
+     
+
+cleaning:
+
+  stage: clean
+  tags:
+    - docker
+  script:
+    - docker system prune -af
