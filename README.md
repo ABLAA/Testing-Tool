@@ -7,9 +7,14 @@ To start the app :
 
 
 cd oidc-testing-tool-front
+
 npm i
+
 npm start
 
+
 cd server
+
 npm i 
+
 node index.js || nodemon index.js
